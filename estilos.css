@@ -1,0 +1,233 @@
+/* ===== Tipografías =====
+   Títulos: Alegreya SC · Texto: Montserrat (ambas desde Google Fonts, ver index.html) */
+
+:root {
+  --celeste: #c4ebee;
+  --celeste-azul: #a4caec;
+  --gris: #4f4545;
+  --negro: #000000;
+  --rojo: #ba0000;
+  --blanco: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+  color: var(--blanco);
+  line-height: 1.7;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(164, 202, 236, 0.22), transparent 55%),
+    radial-gradient(ellipse at 90% 100%, rgba(186, 0, 0, 0.28), transparent 50%),
+    linear-gradient(180deg, var(--negro) 0%, #120d0d 55%, var(--gris) 140%);
+  background-attachment: fixed;
+}
+
+/* ===== Cabecera y pie ===== */
+.cabecera,
+.pie {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.cabecera { border-bottom: 1px solid rgba(196, 235, 238, 0.25); }
+
+.marca {
+  margin: 0;
+  font-family: "Alegreya SC", Georgia, serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--celeste);
+}
+
+.autora,
+.pie p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--celeste-azul);
+}
+
+.enlace-autora {
+  color: var(--blanco);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--rojo);
+  text-underline-offset: 3px;
+}
+.enlace-autora:hover { color: var(--celeste); }
+
+.pie {
+  margin-top: 40px;
+  border-top: 1px solid rgba(196, 235, 238, 0.25);
+}
+
+/* ===== Nodos (solo se muestra el que está activo) ===== */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+}
+
+.nodo {
+  display: none;
+  padding: 28px 24px 32px;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid var(--celeste-azul);
+  border-radius: 14px;
+  box-shadow: 0 0 28px rgba(164, 202, 236, 0.25), inset 0 0 40px rgba(196, 235, 238, 0.05);
+  animation: aparecer 0.6s ease both;
+}
+
+.nodo:target { display: block; }
+
+/* El nodo 1 se muestra por defecto si no hay otro nodo activo */
+main:not(:has(.nodo:target)) #nodo1 { display: block; }
+
+/* Cada nivel tiene su propio acento de color */
+.nivel-inicio     { border-color: var(--celeste); }
+.nivel-intermedio { border-color: var(--celeste-azul); }
+.nivel-final      { border-color: var(--rojo);
+                    box-shadow: 0 0 30px rgba(186, 0, 0, 0.45), inset 0 0 40px rgba(186, 0, 0, 0.08); }
+
+@keyframes aparecer {
+  from { opacity: 0; filter: blur(6px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+/* ===== Títulos ===== */
+h1 {
+  margin: 0 0 4px;
+  font-family: "Alegreya SC", Georgia, serif;
+  font-weight: normal;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  color: var(--celeste);
+  text-shadow: 0 0 14px rgba(164, 202, 236, 0.7);
+}
+
+.nivel-final h1 {
+  color: var(--blanco);
+  text-shadow: 0 0 16px rgba(186, 0, 0, 0.95);
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--celeste-azul);
+}
+
+.nivel-final h2 { color: #ff8a8a; }
+
+p {
+  margin: 0 0 16px;
+  max-width: 68ch;
+}
+
+/* ===== Imagen ===== */
+.imagen {
+  display: block;
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  margin: 0 0 20px;
+  border-radius: 10px;
+  border: 1px solid var(--gris);
+  box-shadow: 0 0 22px rgba(164, 202, 236, 0.3);
+}
+
+.nivel-final .imagen {
+  filter: saturate(0.85) contrast(1.05);
+  box-shadow: 0 0 24px rgba(186, 0, 0, 0.5);
+}
+
+/* ===== Video embebido ===== */
+.video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 8px 0 22px;
+  border: 2px solid var(--celeste-azul);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--negro);
+  box-shadow: 0 0 26px rgba(196, 235, 238, 0.35), 0 0 0 4px rgba(186, 0, 0, 0.35);
+}
+
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== Botones de opción ===== */
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.boton {
+  display: inline-block;
+  padding: 12px 20px;
+  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--negro);
+  background: linear-gradient(135deg, var(--celeste), var(--celeste-azul));
+  border: 2px solid var(--celeste);
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(164, 202, 236, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(196, 235, 238, 0.9);
+}
+
+.boton:active { transform: translateY(0); }
+
+.boton-volver {
+  color: var(--blanco);
+  background: var(--gris);
+  border-color: var(--celeste-azul);
+  box-shadow: none;
+}
+.boton-volver:hover { background: #685c5c; box-shadow: 0 0 14px rgba(164, 202, 236, 0.5); }
+
+.boton-reinicio {
+  color: var(--blanco);
+  background: var(--rojo);
+  border-color: var(--rojo);
+  box-shadow: 0 0 14px rgba(186, 0, 0, 0.6);
+}
+.boton-reinicio:hover { background: #d40000; box-shadow: 0 0 22px rgba(255, 60, 60, 0.8); }
+
+a:focus-visible {
+  outline: 3px solid var(--blanco);
+  outline-offset: 3px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 560px) {
+  .nodo { padding: 20px 14px 24px; }
+  .boton { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nodo { animation: none; }
+  .boton { transition: none; }
+}
